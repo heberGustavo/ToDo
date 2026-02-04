@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, PopoverController, ToastController } from '@ionic/angular';
 
 import { TaskService } from '../services/task-service';
 
 import { ITask } from '../interface/task.interface';
 import { DateFormatService } from '../services/date-format-service';
+import { PopoverComponent } from '../components/popover/popover.component';
 
 
 @Component({
@@ -15,11 +16,14 @@ import { DateFormatService } from '../services/date-format-service';
 })
 export class HomePage {
 
+  typeTask: string = 'pending';
+
   constructor(
     public taskService: TaskService,
+    public dateFormatService: DateFormatService,
     public alertController: AlertController,
-    private toastController: ToastController,
-    private dateFormatService: DateFormatService,
+    public toastController: ToastController,
+    public popoverController: PopoverController
   ) { }
 
   async presentAlertPromptAdd() {
@@ -130,6 +134,15 @@ export class HomePage {
     });
 
     toast.present();
+  }
+
+   async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PopoverComponent,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
 
 }
