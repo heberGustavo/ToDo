@@ -1,0 +1,2 @@
+############ IONIC DOCS
+Version Ionic: v4 -> https://ionicframework.com/docs/v4/api/toast
