@@ -26,8 +26,8 @@
     <ion-item-sliding *ngFor="let task of taskService.getTasksPending(); let i = index">
       <ion-item>
         <ion-label>{{ task.value }}</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="task.done"></ion-checkbox>
-        <ion-badge color="warning" *ngIf="task.date.getDate()">
+        <ion-checkbox slot="start" [(ngModel)]="task.done" (click)="saveAfterClickCheckBox(i, true)"></ion-checkbox>
+        <ion-badge color="warning" *ngIf="task.date !== null ? task.date.getDate() : false">
           {{ task.date | dataFormat }}
         </ion-badge>
       </ion-item>
@@ -46,8 +46,8 @@
     <ion-item-sliding *ngFor="let task of taskService.getTasksDone(); let i = index">
       <ion-item>
         <ion-label>{{ task.value }}</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="task.done"></ion-checkbox>
-        <ion-badge color="warning" *ngIf="task.date.getDate()">
+        <ion-checkbox slot="start" [(ngModel)]="task.done" (click)="saveAfterClickCheckBox(i, false)"></ion-checkbox>
+        <ion-badge color="warning" *ngIf="task.date !== null ? task.date.getDate() : false">
           {{ task.date | dataFormat }}
         </ion-badge>
       </ion-item>

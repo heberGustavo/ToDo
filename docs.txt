@@ -1,2 +1,8 @@
 ############ IONIC DOCS
 Version Ionic: v4 -> https://ionicframework.com/docs/v4/api/toast
+
+############ CAPACITOR
+ionic integrations enable capacitor
+npm i @capacitor/core
+npm i -D @capacitor/cli
+npm install @capacitor/preferences

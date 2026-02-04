@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, PopoverController, ToastController } from '@ionic/angular';
 
 import { TaskService } from '../services/task-service';
@@ -14,7 +14,7 @@ import { PopoverComponent } from '../components/popover/popover.component';
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
   typeTask: string = 'pending';
 
@@ -25,6 +25,10 @@ export class HomePage {
     public toastController: ToastController,
     public popoverController: PopoverController
   ) { }
+
+  ngOnInit(): void {
+    this.taskService.getFromStorage();
+  }
 
   async presentAlertPromptAdd() {
     const alert = await this.alertController.create({
@@ -67,7 +71,6 @@ export class HomePage {
   async presentAlertPromptUpdate(index: number, task: ITask) {
 
     const dataFormatada = this.dateFormatService.format(task.date);
-    console.log(dataFormatada);
 
     const alert = await this.alertController.create({
       header: 'Update task!',
@@ -143,6 +146,10 @@ export class HomePage {
       translucent: true
     });
     return await popover.present();
+  }
+
+  saveAfterClickCheckBox(index: number, done: boolean){
+    this.taskService.updateDone(index, done);
   }
 
 }
