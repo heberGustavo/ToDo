@@ -7,8 +7,16 @@ import { ITask } from './../interface/task.interface';
 export class TaskService {
   private tasks: ITask[] = [];
 
-  public getTasks(): ITask[] {
+  public getAllTasks(): ITask[] {
     return this.tasks;
+  }
+
+  public getTasksPending() : ITask[]{
+    return this.tasks.filter(task => !task.done);
+  }
+
+  public getTasksDone() : ITask[]{
+    return this.tasks.filter(task => task.done);
   }
 
   public addTask(value: string, date: string) {
