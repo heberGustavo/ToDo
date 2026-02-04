@@ -1,6 +1,7 @@
 <h1 align="center">
-  ToDo App
+  ToDo (App Mobile)
 </h1>
+<p align="center">This project was created using <b>Ionic with Angular</b></p>
 
 </br>
   
