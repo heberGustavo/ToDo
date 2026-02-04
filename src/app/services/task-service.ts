@@ -12,9 +12,6 @@ export class TaskService {
   }
 
   public addTask(value: string, date: string) {
-    console.log(value);
-    console.log(date);
-
     date = date.replace("-", "/");
 
     const newTask: ITask = { 
@@ -24,8 +21,6 @@ export class TaskService {
     };
 
     this.tasks.push(newTask);
-    console.log(this.tasks);
-    
   }
 
 }

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+
 import { TaskService } from '../services/task-service';
+
+import { ITask } from '../interface/task.interface';
+
 
 @Component({
   selector: 'app-home',
@@ -16,6 +20,10 @@ export class HomePage {
     private taskService: TaskService,
   ) {}
   
+  getAllTasks(): ITask[] {
+    return this.taskService.getTasks();
+  }
+
   async presentAlertPromptAdd() {
     const alert = await this.alertController.create({
       header: 'Add task!',
@@ -39,7 +47,7 @@ export class HomePage {
         }, {
           text: 'Salvar',
           handler: (alertData) => {
-            if(alertData.task !== '' && alertData.date !== ''){
+            if(alertData.task !== ''){
               this.taskService.addTask(alertData.task, alertData.date);
             }
             else{
