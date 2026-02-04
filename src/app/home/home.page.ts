@@ -128,7 +128,7 @@ export class HomePage {
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: "It's necessary info all fields!",
+      message: "You need to provide the task name!",
       duration: 2000,
       color: 'danger'
     });
