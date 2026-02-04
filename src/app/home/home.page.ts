@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
+import { TaskService } from '../services/task-service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,13 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(public alertController: AlertController) {}
+  constructor(
+    public alertController: AlertController,
+    private toastController: ToastController,
+    private taskService: TaskService,
+  ) {}
   
-  async presentAlertPrompt() {
+  async presentAlertPromptAdd() {
     const alert = await this.alertController.create({
       header: 'Add task!',
       inputs: [
@@ -33,14 +38,30 @@ export class HomePage {
           role: 'cancel'
         }, {
           text: 'Salvar',
-          handler: () => {
-            console.log('Confirm Ok');
+          handler: (alertData) => {
+            if(alertData.task !== '' && alertData.date !== ''){
+              this.taskService.addTask(alertData.task, alertData.date);
+            }
+            else{
+              this.presentToast();
+              this.presentAlertPromptAdd();
+            }
           }
         }
       ]
     });
 
     await alert.present();
+  }
+
+  async presentToast(){
+    const toast = await this.toastController.create({
+      message: "It's necessary info all fields!",
+      duration: 2000,
+      color: 'danger'
+    });
+
+    toast.present();
   }
 
 }
