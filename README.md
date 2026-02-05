@@ -17,6 +17,17 @@ https://github.com/user-attachments/assets/df9b49a5-118a-4ad0-8353-3a4655b332e5
 
 
 ## :round_pushpin: Infra
+
+
+<h3>1. Technologies</h3>
+This project was developed using:
+
+- Ionic
+- Angular v20
+- Capacitor v8
+- Save data in Storage
+<hr>
+<h3>2. Architecture</h3>
 <img width="243" height="770" alt="image" src="https://github.com/user-attachments/assets/02277fcd-c861-4d80-884d-80b5f577e007" />
 
 
