@@ -6,3 +6,16 @@ ionic integrations enable capacitor
 npm i @capacitor/core
 npm i -D @capacitor/cli
 npm install @capacitor/preferences
+
+############ PUBLISH ANDROID
+ionic build (cria pasta www)
+ionic capacitor add android (cria pasta android) 
+ionic capacitor run android (executa no emulador)
+
+Obs: Se houve alteração no codigo e quer refletir no emulador, pode executar o comando abaixo, pois ele é mais rapido:
+ionic cap copy android
+
+Doc: https://ionicframework.com/docs/angular/your-first-app/deploying-mobile
+
+TO ONLY RUN in MOBILE: 
+ionic serve --external (open IP in phone)
