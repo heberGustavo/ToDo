@@ -9,8 +9,9 @@ npm install @capacitor/preferences
 
 ############ PUBLISH ANDROID
 ionic build (cria pasta www)
-ionic capacitor add android (cria pasta android) 
-ionic capacitor run android (executa no emulador)
+ionic cap add android (cria pasta android) 
+ionic cap copy
+ionic cap open android (chama no ANDROID STUDIO)
 
 Obs: Se houve alteração no codigo e quer refletir no emulador, pode executar o comando abaixo, pois ele é mais rapido:
 ionic cap copy android
