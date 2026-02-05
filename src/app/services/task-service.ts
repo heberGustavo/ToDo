@@ -22,7 +22,10 @@ export class TaskService {
   }
 
   public addTask(value: string, date: string) {
+    const tempId: string = `${Date.now()}-${Math.random().toString(36).substring(2, 8)};`
+
     const newTask: ITask = {
+      id: tempId,
       value: value,
       date: this.convertDate(date),
       done: false
@@ -32,25 +35,27 @@ export class TaskService {
     this.setToStorage();
   }
 
-  public updateTask(index: number, value: string, date: string) {
-    let task = this.tasks[index];
+  public updateTask(id: string, value: string, date: string) {
+    let task = this.tasks.find(item => item.id === id);
 
-    task.value = value;
-    task.date = this.convertDate(date);
-    this.tasks.splice(index, 1, task);
-    this.setToStorage();
+    if(task !== null) {
+      task!.value = value;
+      task!.date = this.convertDate(date);
+      //this.tasks.splice(index, 1, task);
+      this.setToStorage();
+    }
   }
 
-  public updateDone(index: number, done: boolean) {
-    let task = this.tasks[index];
-    task.done = done;
-    
-    this.tasks.splice(index, 1, task);
-    this.setToStorage();
+  public updateDone(id: string, done: boolean) {
+    let task = this.tasks.find(item => item.id === id);
+    if(task !== null){
+      task!.done = done;
+      this.setToStorage();
+    }
   }
 
-  public removeTask(index: number) {
-    this.tasks.splice(index, 1);
+  public removeTask(id: string) {
+    this.tasks = this.tasks.filter(item => item.id !== id);
     this.setToStorage();
   }
 

@@ -68,7 +68,7 @@ export class HomePage implements OnInit{
     await alert.present();
   }
 
-  async presentAlertPromptUpdate(index: number, task: ITask) {
+  async presentAlertPromptUpdate(task: ITask) {
 
     const dataFormatada = this.dateFormatService.format(task.date);
 
@@ -97,11 +97,11 @@ export class HomePage implements OnInit{
           text: 'Save',
           handler: (alertData) => {
             if (alertData.task !== '') {
-              this.taskService.updateTask(index, alertData.task, alertData.date);
+              this.taskService.updateTask(task.id, alertData.task, alertData.date);
             }
             else {
               this.presentToast();
-              this.presentAlertPromptUpdate(index, task);
+              this.presentAlertPromptUpdate(task);
             }
           }
         }
@@ -111,7 +111,7 @@ export class HomePage implements OnInit{
     await alert.present();
   }
 
-  async presentAlertPromptDelete(index: number) {
+  async presentAlertPromptDelete(id: string) {
     const alert = await this.alertController.create({
       header: 'Delete task!',
       message: 'Do you really want to delete this task?',
@@ -121,7 +121,7 @@ export class HomePage implements OnInit{
           role: 'cancel'
         }, {
           text: 'Delete',
-          handler: () => this.taskService.removeTask(index)
+          handler: () => this.taskService.removeTask(id)
         }
       ]
     });
@@ -148,8 +148,8 @@ export class HomePage implements OnInit{
     return await popover.present();
   }
 
-  saveAfterClickCheckBox(index: number, done: boolean){
-    this.taskService.updateDone(index, done);
+  saveAfterClickCheckBox(id: string, done: boolean){
+    this.taskService.updateDone(id, done);
   }
 
 }

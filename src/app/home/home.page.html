@@ -26,16 +26,16 @@
     <ion-item-sliding *ngFor="let task of taskService.getTasksPending(); let i = index">
       <ion-item>
         <ion-label>{{ task.value }}</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="task.done" (click)="saveAfterClickCheckBox(i, true)"></ion-checkbox>
+        <ion-checkbox slot="start" [(ngModel)]="task.done" (click)="saveAfterClickCheckBox(task.id, true)"></ion-checkbox>
         <ion-badge color="warning" *ngIf="task.date !== null ? task.date.getDate() : false">
           {{ task.date | dataFormat }}
         </ion-badge>
       </ion-item>
       <ion-item-options>
-        <ion-item-option color="success" (click)="presentAlertPromptUpdate(i, task)">
+        <ion-item-option color="success" (click)="presentAlertPromptUpdate(task)">
           <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-item-option>
-        <ion-item-option color="danger" (click)="presentAlertPromptDelete(i)">
+        <ion-item-option color="danger" (click)="presentAlertPromptDelete(task.id)">
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -46,16 +46,16 @@
     <ion-item-sliding *ngFor="let task of taskService.getTasksDone(); let i = index">
       <ion-item>
         <ion-label>{{ task.value }}</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="task.done" (click)="saveAfterClickCheckBox(i, false)"></ion-checkbox>
+        <ion-checkbox slot="start" [(ngModel)]="task.done" (click)="saveAfterClickCheckBox(task.id, false)"></ion-checkbox>
         <ion-badge color="warning" *ngIf="task.date !== null ? task.date.getDate() : false">
           {{ task.date | dataFormat }}
         </ion-badge>
       </ion-item>
       <ion-item-options>
-        <ion-item-option color="success" (click)="presentAlertPromptUpdate(i, task)">
+        <ion-item-option color="success" (click)="presentAlertPromptUpdate(task)">
           <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-item-option>
-        <ion-item-option color="danger" (click)="presentAlertPromptDelete(i)">
+        <ion-item-option color="danger" (click)="presentAlertPromptDelete(task.id)">
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
